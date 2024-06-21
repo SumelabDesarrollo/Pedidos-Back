@@ -40,12 +40,16 @@ public partial class MydatabaseContext : DbContext
 
             entity.ToTable("cliente");
 
+            entity.HasIndex(e => e.NxtIdErp, "unique_nxt_id_erp").IsUnique();
+
             entity.Property(e => e.Idcliente).HasColumnName("idcliente");
             entity.Property(e => e.AsesorCallcenter)
-                .HasMaxLength(1)
+                .HasMaxLength(255)
+                .IsFixedLength()
                 .HasColumnName("asesor_callcenter");
             entity.Property(e => e.AsesorCredito)
-                .HasMaxLength(1)
+                .HasMaxLength(255)
+                .IsFixedLength()
                 .HasColumnName("asesor_credito");
             entity.Property(e => e.CreditLimit)
                 .HasMaxLength(255)
@@ -56,6 +60,7 @@ public partial class MydatabaseContext : DbContext
                 .HasColumnName("email");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Iddireccion).HasColumnName("iddireccion");
+            entity.Property(e => e.Maximodias).HasColumnName("maximodias");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .IsFixedLength()
@@ -71,6 +76,7 @@ public partial class MydatabaseContext : DbContext
                 .HasMaxLength(255)
                 .IsFixedLength()
                 .HasColumnName("property_payment_term_id");
+            entity.Property(e => e.Saldo).HasColumnName("saldo");
             entity.Property(e => e.SlClaCli)
                 .HasMaxLength(255)
                 .IsFixedLength()
@@ -114,6 +120,9 @@ public partial class MydatabaseContext : DbContext
             entity.Property(e => e.IdProducto).HasColumnName("id_producto");
             entity.Property(e => e.Idpedido).HasColumnName("idpedido");
             entity.Property(e => e.Incentivo).HasColumnName("incentivo");
+            entity.Property(e => e.InsertadoproductoSap)
+                .HasDefaultValue(false)
+                .HasColumnName("insertadoproducto_sap");
             entity.Property(e => e.Iva).HasColumnName("iva");
             entity.Property(e => e.PriceUnit).HasColumnName("price_unit");
             entity.Property(e => e.ProductUomQty).HasColumnName("product_uom_qty");
@@ -181,8 +190,14 @@ public partial class MydatabaseContext : DbContext
                 .HasColumnName("fecha_creacion");
             entity.Property(e => e.Feria).HasColumnName("feria");
             entity.Property(e => e.Idcliente).HasColumnName("idcliente");
+            entity.Property(e => e.InsertadoSap)
+                .HasDefaultValue(false)
+                .HasColumnName("insertado_sap");
             entity.Property(e => e.LinesCountInteger).HasColumnName("lines_count_integer");
             entity.Property(e => e.Name).HasColumnName("name");
+            entity.Property(e => e.Numatcard)
+                .HasMaxLength(10)
+                .HasColumnName("numatcard");
             entity.Property(e => e.NxtSync).HasColumnName("nxt_sync");
             entity.Property(e => e.OrigenVenta).HasColumnName("origen_venta");
             entity.Property(e => e.StateErp).HasColumnName("state_erp");
@@ -202,6 +217,8 @@ public partial class MydatabaseContext : DbContext
 
             entity.Property(e => e.IdProducto).HasColumnName("id_producto");
             entity.Property(e => e.Estado).HasColumnName("estado");
+            entity.Property(e => e.Fraccionador).HasColumnName("fraccionador");
+            entity.Property(e => e.Grupo).HasColumnName("grupo");
             entity.Property(e => e.ListPrice).HasColumnName("list_price");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
@@ -209,6 +226,7 @@ public partial class MydatabaseContext : DbContext
             entity.Property(e => e.NxtIdErp)
                 .HasMaxLength(250)
                 .HasColumnName("nxt_id_erp");
+            entity.Property(e => e.Presentacion).HasColumnName("presentacion");
             entity.Property(e => e.SlMarca)
                 .HasMaxLength(250)
                 .IsFixedLength()
@@ -266,6 +284,9 @@ public partial class MydatabaseContext : DbContext
         modelBuilder.HasSequence("detallepedidos_id_seq");
         modelBuilder.HasSequence("iddetallepedido_sequence");
         modelBuilder.HasSequence("idpedido_sequence");
+        modelBuilder.HasSequence("numatcard_seq").StartsAt(300001L);
+        modelBuilder.HasSequence("pedido_idpedido_seq");
+        modelBuilder.HasSequence("pedido_seq").StartsAt(300000L);
 
         OnModelCreatingPartial(modelBuilder);
     }

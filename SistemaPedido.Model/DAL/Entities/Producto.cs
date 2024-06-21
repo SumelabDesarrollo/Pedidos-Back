@@ -21,9 +21,15 @@ public partial class Producto
 
     public string? TaxesId { get; set; }
 
-    public bool? Estado { get; set; }
+    public string? Estado { get; set; }
 
     public string? SlMarca { get; set; }
+
+    public string? Grupo { get; set; }
+
+    public string? Presentacion { get; set; }
+
+    public string? Fraccionador { get; set; }
 
     public virtual ICollection<Detallepedido> Detallepedidos { get; set; } = new List<Detallepedido>();
 }

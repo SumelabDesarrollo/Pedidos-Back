@@ -5,8 +5,6 @@ namespace SistemaPedido.Model.DAL.Entities;
 
 public partial class Pedido
 {
-    public int Idpedido { get; set; }
-
     public int? Idcliente { get; set; }
 
     public string? Name { get; set; }
@@ -36,6 +34,12 @@ public partial class Pedido
     public decimal? AmountUntaxed { get; set; }
 
     public int? LinesCountInteger { get; set; }
+
+    public int Idpedido { get; set; }
+
+    public bool? InsertadoSap { get; set; }
+
+    public string? Numatcard { get; set; }
 
     public virtual ICollection<Detallepedido> Detallepedidos { get; set; } = new List<Detallepedido>();
 

@@ -39,6 +39,8 @@ public partial class Detallepedido
 
     public int? IdProducto { get; set; }
 
+    public bool? InsertadoproductoSap { get; set; }
+
     public virtual Producto? IdProductoNavigation { get; set; }
 
     public virtual Pedido? IdpedidoNavigation { get; set; }

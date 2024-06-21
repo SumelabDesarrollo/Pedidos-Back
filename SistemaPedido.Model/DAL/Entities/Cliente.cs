@@ -25,11 +25,11 @@ public partial class Cliente
 
     public string? UserId { get; set; }
 
-    public char? AsesorCredito { get; set; }
+    public string? AsesorCredito { get; set; }
 
-    public char? AsesorCallcenter { get; set; }
+    public string? AsesorCallcenter { get; set; }
 
-    public bool? Estado { get; set; }
+    public string? Estado { get; set; }
 
     public string? StateId { get; set; }
 
@@ -38,6 +38,10 @@ public partial class Cliente
     public double? Sobregiro { get; set; }
 
     public int? Iddireccion { get; set; }
+
+    public decimal? Saldo { get; set; }
+
+    public decimal? Maximodias { get; set; }
 
     public virtual Direccion? IddireccionNavigation { get; set; }
 
