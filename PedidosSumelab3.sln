@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.API", "SistemaPedido.API\SistemaPedido.API.csproj", "{B9A2844E-DAF1-4D48-A5CF-9A34BAE6CBA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.API", "SistemaPedido.API\SistemaPedido.API.csproj", "{B9A2844E-DAF1-4D48-A5CF-9A34BAE6CBA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.BLL", "SistemaPedido.BLL\SistemaPedido.BLL.csproj", "{134A02FC-A494-4660-B3E9-A9A58CDC5259}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.BLL", "SistemaPedido.BLL\SistemaPedido.BLL.csproj", "{134A02FC-A494-4660-B3E9-A9A58CDC5259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.DAL", "SistemaPedido.DAL\SistemaPedido.DAL.csproj", "{6FABD53D-8C0F-46D1-A522-7221A2C4C029}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.DAL", "SistemaPedido.DAL\SistemaPedido.DAL.csproj", "{6FABD53D-8C0F-46D1-A522-7221A2C4C029}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.DTO", "SistemaPedido.DTO\SistemaPedido.DTO.csproj", "{78D3BBC2-87CE-4C12-8879-631CA2F731D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.DTO", "SistemaPedido.DTO\SistemaPedido.DTO.csproj", "{78D3BBC2-87CE-4C12-8879-631CA2F731D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.IOC", "SistemaPedido.IOC\SistemaPedido.IOC.csproj", "{390006AD-E936-433F-BB37-24A2EC05E3D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.IOC", "SistemaPedido.IOC\SistemaPedido.IOC.csproj", "{390006AD-E936-433F-BB37-24A2EC05E3D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.Model", "SistemaPedido.Model\SistemaPedido.Model.csproj", "{72373092-3136-4ACB-B7EB-17C4E0D9505D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.Model", "SistemaPedido.Model\SistemaPedido.Model.csproj", "{72373092-3136-4ACB-B7EB-17C4E0D9505D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPedido.Utility", "SistemaPedido.Utility\SistemaPedido.Utility.csproj", "{686C80FB-6CA5-4076-94B6-2517CA8E3D1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaPedido.Utility", "SistemaPedido.Utility\SistemaPedido.Utility.csproj", "{686C80FB-6CA5-4076-94B6-2517CA8E3D1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
