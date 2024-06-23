@@ -68,11 +68,8 @@ namespace SistemaPedido.Utility
                     destino.AmountTotal,
                     opt => opt.MapFrom(origen => Convert.ToString(origen.AmountTotal.Value, new CultureInfo("es-EC")))
                 )
-                .ForMember(dest => dest.Detallepedidos, opt => opt.MapFrom(src => src.Detallepedidos))
-                .ForMember(destino =>
-                    destino.AmountUntaxed,
-                    opt => opt.MapFrom(origen => Convert.ToString(origen.AmountUntaxed.Value, new CultureInfo("es-EC")))
-                );
+                .ForMember(dest => dest.Detallepedidos, opt => opt.MapFrom(src => src.Detallepedidos));
+
             CreateMap<PedidoDTO, Pedido>()
                 .ForMember(destino => destino.FechaCreacion,
                        opt => opt.MapFrom(origen => string.IsNullOrWhiteSpace(origen.FechaCreacion)
@@ -84,13 +81,10 @@ namespace SistemaPedido.Utility
                 )
                 .ForMember(destino =>
                     destino.AmountTotal,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.AmountTotal, new CultureInfo("es-EC")))
-                )
-                .ForMember(dest => dest.Detallepedidos, opt => opt.MapFrom(src => src.Detallepedidos))
-                .ForMember(destino =>
-                    destino.AmountUntaxed,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.AmountUntaxed, new CultureInfo("es-EC")))
-                );
+                    opt => opt.MapFrom(origen => !string.IsNullOrEmpty(origen.AmountTotal) ? Convert.ToDecimal(origen.AmountTotal, CultureInfo.InvariantCulture) : (decimal?)null))
+
+                .ForMember(dest => dest.Detallepedidos, opt => opt.MapFrom(src => src.Detallepedidos));
+                
 
             #endregion Pedido
             #region Detallepedido
@@ -154,12 +148,10 @@ namespace SistemaPedido.Utility
                 )
                 .ForMember(destino =>
                     destino.SlProductPvf,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.SlProductPvf, new CultureInfo("es-EC")))
-                )
+                    opt => opt.MapFrom(origen => !string.IsNullOrEmpty(origen.SlProductPvf) ? Convert.ToDecimal(origen.SlProductPvf, CultureInfo.InvariantCulture) : (decimal?)null))
                 .ForMember(destino =>
                     destino.SlProductPvp,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.SlProductPvp, new CultureInfo("es-EC")))
-                )
+                    opt => opt.MapFrom(origen => !string.IsNullOrEmpty(origen.SlProductPvp) ? Convert.ToDecimal(origen.SlProductPvp, CultureInfo.InvariantCulture) : (decimal?)null))
                 .ForMember(destino =>
                     destino.Discount,
                     opt => opt.MapFrom(origen => Convert.ToDecimal(origen.Discount, new CultureInfo("es-EC")))
@@ -173,25 +165,22 @@ namespace SistemaPedido.Utility
                     opt => opt.MapFrom(origen => Convert.ToDecimal(origen.SlVirtualAvailable, new CultureInfo("es-EC")))
                 )
                 //.ForMember(destino =>
-                    //destino.AmountTax,
-                    //opt => opt.MapFrom(origen => Convert.ToDecimal(origen.AmountTax, new CultureInfo("es-EC")))
+                //destino.AmountTax,
+                //opt => opt.MapFrom(origen => Convert.ToDecimal(origen.AmountTax, new CultureInfo("es-EC")))
                 //)
                 .ForMember(destino =>
                     destino.SlSubtotal,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.SlSubtotal, new CultureInfo("es-EC")))
-                )
+                    opt => opt.MapFrom(origen => !string.IsNullOrEmpty(origen.SlSubtotal) ? Convert.ToDecimal(origen.SlSubtotal, CultureInfo.InvariantCulture) : (decimal?)null))
                 .ForMember(destino =>
                     destino.AmountTotal,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.AmountTotal, new CultureInfo("es-EC")))
-                )
+                    opt => opt.MapFrom(origen => !string.IsNullOrEmpty(origen.AmountTotal) ? Convert.ToDecimal(origen.AmountTotal, CultureInfo.InvariantCulture) : (decimal?)null))
                 .ForMember(destino =>
                     destino.Final,
                     opt => opt.MapFrom(origen => Convert.ToDecimal(origen.Final, new CultureInfo("es-EC")))
                 )
                 .ForMember(destino =>
                     destino.PriceUnit,
-                    opt => opt.MapFrom(origen => Convert.ToDecimal(origen.PriceUnit, new CultureInfo("es-EC")))
-                );
+                    opt => opt.MapFrom(origen => !string.IsNullOrEmpty(origen.PriceUnit) ? Convert.ToDecimal(origen.PriceUnit, CultureInfo.InvariantCulture) : (decimal?)null));
             #endregion DetallePedidos
         }
     }

@@ -13,7 +13,7 @@ namespace SistemaPedido.DTO
         public bool? CreateUid { get; set; }
         public string? UserId { get; set; }
         public string? OrigenVenta { get; set; }
-        public string AmountTotal { get; set; }
+        public string? AmountTotal { get; set; }
         public string? Estado { get; set; }
         public string? NxtSync { get; set; }
         public string? StateErp { get; set; }

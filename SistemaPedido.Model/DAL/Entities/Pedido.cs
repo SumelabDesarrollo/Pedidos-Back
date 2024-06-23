@@ -31,7 +31,7 @@ public partial class Pedido
 
     public string? Feria { get; set; }
 
-    public decimal? AmountUntaxed { get; set; }
+    public string? AmountUntaxed { get; set; }
 
     public int? LinesCountInteger { get; set; }
 
