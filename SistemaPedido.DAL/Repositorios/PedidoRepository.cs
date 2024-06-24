@@ -108,5 +108,57 @@ namespace SistemaPedido.DAL.Repositorios
                 }
             }
         }
+
+        public async Task<bool> ActualizarEstado(int id, string estado)
+        {
+            using (var transaction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var pedido = await _dbContext.Pedidos
+                        .Include(p => p.Detallepedidos)
+                        .FirstOrDefaultAsync(p => p.Idpedido == id);
+
+                    if (pedido == null)
+                        throw new KeyNotFoundException("El pedido no se encontró.");
+
+                    pedido.Estado = estado;
+                    _dbContext.Pedidos.Update(pedido);
+
+                    if (estado == "Pedido de venta")
+                    {
+                        foreach (var detalle in pedido.Detallepedidos)
+                        {
+                            var productoEncontrado = await _dbContext.Productos
+                                .FirstOrDefaultAsync(p => p.IdProducto == detalle.IdProducto);
+
+                            if (productoEncontrado != null)
+                            {
+                                productoEncontrado.Stock -= detalle.QtyOrder;
+                                _dbContext.Productos.Update(productoEncontrado);
+
+                                // Actualizar SlVirtualAvailable en Detallepedido
+                                // Actualizar SlVirtualAvailable en Detallepedido
+                                detalle.SlVirtualAvailable = productoEncontrado.Stock != null ? (decimal?)Convert.ToDecimal(productoEncontrado.Stock) : null;
+
+                                _dbContext.Detallepedidos.Update(detalle);
+                            }
+                        }
+                    }
+
+                    await _dbContext.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+
+                    return true;
+                }
+                catch
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
+        }
+
     }
 }

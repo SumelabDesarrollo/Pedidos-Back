@@ -12,5 +12,7 @@ namespace SistemaPedido.DAL.Repositorios.Contrato
         Task<Pedido> Registrar(Pedido modelo);
         Task<bool> Editar(Pedido modelo);
         Task<bool> Eliminar(Pedido modelo);
+
+        Task<bool> ActualizarEstado(int id, string estado);
     }
 }

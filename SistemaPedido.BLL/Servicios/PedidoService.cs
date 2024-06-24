@@ -191,20 +191,14 @@ namespace SistemaPedido.BLL.Servicios
         {
             try
             {
-                var pedido = await _pedidosRepository.Obtener(p => p.Idpedido == id);
-
-                if (pedido == null)
-                    throw new KeyNotFoundException("El pedido no se encontró.");
-
-                pedido.Estado = estado;
-
-                return await _pedidosRepository.Editar(pedido);
+                return await _pedidosRepository.ActualizarEstado(id, estado);
             }
             catch
             {
                 throw;
             }
         }
+
 
 
     }
