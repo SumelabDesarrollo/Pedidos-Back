@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  sistemapedidoapi:
+    image: sistemapedidoapi
+    build:
+      context: .
+      dockerfile: SistemaPedido.API/Dockerfile
+    ports:
+      - "5003:80"
