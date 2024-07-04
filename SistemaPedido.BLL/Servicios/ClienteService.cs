@@ -1,15 +1,11 @@
 ﻿using SistemaPedido.BLL.Servicios.Contrato;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using AutoMapper;
-using SistemaPedido.BLL.Servicios.Contrato;
 using SistemaPedido.DAL.Repositorios.Contrato;
 using SistemaPedido.DTO;
 using SistemaPedido.Model.DAL.Entities;
+using AutoMapper;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SistemaPedido.BLL.Servicios
 {
@@ -24,17 +20,43 @@ namespace SistemaPedido.BLL.Servicios
             _mapper = mapper;
         }
 
-        public async Task<List<ClienteDTO>> Lista()
+        public async Task<List<ClienteDTO>> Lista(int page, int pageSize, string search)
         {
             try
             {
-                var listaClientes = await _clientesRepositorio.Consultar();
-                return _mapper.Map<List<ClienteDTO>>(listaClientes.ToList());
+                var consultaClientes = await _clientesRepositorio.Consultar();
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    search = search.ToLower();
+                    consultaClientes = consultaClientes.Where(c =>
+                        c.Name.ToLower().Contains(search) ||
+                        c.Vat.ToLower().Contains(search) ||
+                        c.NxtIdErp.ToLower().Contains(search));
+                }
+
+                var clientesPaginados = consultaClientes.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return _mapper.Map<List<ClienteDTO>>(clientesPaginados);
             }
             catch
             {
                 throw;
             }
         }
+
+
+        public async Task<List<ClienteDTO>> ListaTodos()
+        {
+            try
+            {
+                var consultaClientes = await _clientesRepositorio.Consultar();
+                return _mapper.Map<List<ClienteDTO>>(consultaClientes.ToList());
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }

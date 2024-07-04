@@ -23,20 +23,44 @@ namespace SistemaPedido.BLL.Servicios
             _productosRepositorio = productosRepositorio;
             _mapper = mapper;
         }
-        public async Task<List<ProductoDTO>> Lista()
+        public async Task<List<ProductoDTO>> Lista(int page, int pageSize, string search)
         {
             try
             {
+                var consultaProductos = await _productosRepositorio.Consultar();
 
-                var listaProductos = await _productosRepositorio.Consultar();
-                return _mapper.Map<List<ProductoDTO>>(listaProductos.ToList());
+                if (!string.IsNullOrEmpty(search))
+                {
+                    search = search.ToLower();
+                    consultaProductos = consultaProductos.Where(p =>
+                        p.Name.ToLower().Contains(search) ||
+                        p.NxtIdErp.ToLower().Contains(search));
+                }
 
+                var productosPaginados = consultaProductos.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return _mapper.Map<List<ProductoDTO>>(productosPaginados);
             }
             catch
             {
                 throw;
             }
         }
+
+
+        public async Task<List<ProductoDTO>> ListaTodos()
+        {
+            try
+            {
+                var consultaProductos = await _productosRepositorio.Consultar();
+                return _mapper.Map<List<ProductoDTO>>(consultaProductos.ToList());
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
         public async Task<ProductoDTO> Crear(ProductoDTO modelo)
         {
             try

@@ -20,15 +20,35 @@ namespace SistemaPedido.API.Controllers
 
         [HttpGet]
         [Route("Lista")]
-        public async Task<IActionResult> Lista()
+        public async Task<IActionResult> Lista([FromQuery] int page = 1, [FromQuery] int pageSize = 10, [FromQuery] string search = "")
         {
             var rsp = new Response<List<ProductoDTO>>();
 
             try
             {
+                var resultado = await _productosServicio.Lista(page, pageSize, search);
                 rsp.status = true;
-                rsp.value = await _productosServicio.Lista();
+                rsp.value = resultado;
+            }
+            catch (Exception ex)
+            {
+                rsp.status = false;
+                rsp.msg = ex.Message;
+            }
+            return Ok(rsp);
+        }
 
+        [HttpGet]
+        [Route("ListaTodos")]
+        public async Task<IActionResult> ListaTodos()
+        {
+            var rsp = new Response<List<ProductoDTO>>();
+
+            try
+            {
+                var resultado = await _productosServicio.ListaTodos();
+                rsp.status = true;
+                rsp.value = resultado;
             }
             catch (Exception ex)
             {

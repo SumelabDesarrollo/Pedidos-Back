@@ -9,9 +9,10 @@ namespace SistemaPedido.BLL.Servicios.Contrato
 {
     public interface IProductoService
     {
-        Task<List<ProductoDTO>> Lista();
+        Task<List<ProductoDTO>> Lista(int page, int pageSize, string search);
         Task<ProductoDTO> Crear(ProductoDTO modelo);
         Task<bool> Editar(ProductoDTO modelo);
         Task<bool> Eliminar(int id);
+        Task<List<ProductoDTO>> ListaTodos();
     }
 }

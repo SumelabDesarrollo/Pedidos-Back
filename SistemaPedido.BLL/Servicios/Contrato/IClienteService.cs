@@ -1,15 +1,12 @@
-﻿using System;
+﻿using SistemaPedido.DTO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
-using SistemaPedido.DTO;
 
 namespace SistemaPedido.BLL.Servicios.Contrato
 {
     public interface IClienteService
     {
-        Task<List<ClienteDTO>> Lista();
+        Task<List<ClienteDTO>> Lista(int page, int pageSize, string search);
+        Task<List<ClienteDTO>> ListaTodos();
     }
 }

@@ -40,6 +40,10 @@ public partial class MydatabaseContext : DbContext
 
             entity.ToTable("cliente");
 
+            entity.HasIndex(e => e.Idcliente, "idx_cliente_idcliente");
+
+            entity.HasIndex(e => new { e.NxtIdErp, e.Name, e.Vat }, "idx_cliente_nxt_id_erp_name_vat");
+
             entity.HasIndex(e => e.NxtIdErp, "unique_nxt_id_erp").IsUnique();
 
             entity.Property(e => e.Idcliente).HasColumnName("idcliente");
@@ -214,6 +218,10 @@ public partial class MydatabaseContext : DbContext
             entity.HasKey(e => e.IdProducto).HasName("producto_pkey");
 
             entity.ToTable("producto");
+
+            entity.HasIndex(e => e.IdProducto, "idx_producto_id_producto");
+
+            entity.HasIndex(e => new { e.Name, e.NxtIdErp }, "idx_producto_name_nxt_id_erp");
 
             entity.Property(e => e.IdProducto).HasColumnName("id_producto");
             entity.Property(e => e.Estado).HasColumnName("estado");
